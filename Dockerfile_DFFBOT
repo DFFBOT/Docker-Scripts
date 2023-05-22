@@ -1,0 +1,10 @@
+FROM debian:bullseye
+RUN apt update
+RUN apt install -y tmux htop nano vim gawk pkg-config
+WORKDIR /root
+ADD ./src/dffbot-build.sh /root/dffbot-build.sh
+RUN /root/dffbot-build.sh
+ADD ./src/dffbot-build_2.sh /root/dffbot-build_2.sh
+RUN /root/dffbot-build_2.sh
+ENV AFLGO=/root/build/aflgo
+CMD /bin/bash

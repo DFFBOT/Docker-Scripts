@@ -1,0 +1,8 @@
+FROM debian:bullseye
+RUN apt update
+RUN apt install -y tmux htop nano vim gawk pkg-config
+WORKDIR /root
+ADD ./src/aflgo-build.sh /root/aflgo-build.sh
+RUN /root/aflgo-build.sh
+ENV AFLGO=/root/build/llvm_tools/build-llvm/msan/aflgo
+CMD /bin/bash
